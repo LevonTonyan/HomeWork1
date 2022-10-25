@@ -6,8 +6,6 @@ import Error from "./Error";
 
 
 const LoginPage = (props) => {
-
-
   const userNameRef = React.createRef();
   const passwordRef = React.createRef();
 
@@ -20,13 +18,14 @@ const LoginPage = (props) => {
     passwordRef.current.value = "";
   };
 
+
+
   return (
     <div className="loginContainer">
-     
       <form className="loginForm">
       {props.displayError?<Error/>:null}
-        <TextField label="Username" inputRef={userNameRef} error={props.displayError}/>
-        <TextField type="password" label="password" inputRef={passwordRef} error={props.displayError}/>
+        <TextField sx={{margin:"3px"}} variant="filled"label="Username" inputRef={userNameRef} error={props.displayError}/>
+        <TextField sx={{margin:"3px"}}  variant="filled" type="password" label="password" inputRef={passwordRef} error={props.displayError}/>
         <Button
           variant="contained"
           onClick={() => userPass()}
