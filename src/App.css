@@ -14,10 +14,12 @@
     
     width: 200px;
     margin: auto;
-
-    
-
 }
+
+
+.ag-header-cell-label {
+    justify-content: center;
+ }
 
 .errorMessage{
     color: red;

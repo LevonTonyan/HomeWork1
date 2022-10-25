@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import LoginPage from "./LoginPage";
 import User from "./User";
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,12 @@ class App extends React.Component {
       isLoggedIn: false,
       currentUser: null,
       displayError: false,
+      isLoading:false
     };
+  }
+
+  toggleLoading = (s) => {
+    this.setState(() => ({isLoading:s}))
   }
 
   login = (credentials) => {
@@ -44,9 +50,14 @@ class App extends React.Component {
           ></Navbar>
         </Box>
 
-        {this.state.isLoggedIn ? <User user={ this.state.currentUser} /> :
+        {this.state.isLoggedIn ? <User user={ this.state.currentUser}
+                                        isLoading={this.state.isLoading} 
+                                        toggleLoading={this.toggleLoading}
+                                        /> :
          <LoginPage login={this.login} 
                      displayError={this.state.displayError}/>}
+
+          
       </>
     );
   }
