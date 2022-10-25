@@ -2,7 +2,7 @@ import React from 'react'
 
 const Error = () => {
   return (
-    <div>NO SUCH USER!!!!!</div>
+    <h1 className='errorMessage'>Wrong credentials!!!!!</h1>
   )
 }
 

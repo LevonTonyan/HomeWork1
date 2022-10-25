@@ -1,8 +1,13 @@
 import React from "react";
 import "./App.css";
 import { Button } from "@mui/material";
+import TextField from '@mui/material/TextField';
+import Error from "./Error";
+
 
 const LoginPage = (props) => {
+
+
   const userNameRef = React.createRef();
   const passwordRef = React.createRef();
 
@@ -17,9 +22,11 @@ const LoginPage = (props) => {
 
   return (
     <div className="loginContainer">
+     
       <form className="loginForm">
-        <input placeholder="username" ref={userNameRef} />
-        <input type="password"placeholder="password" ref={passwordRef} />
+      {props.displayError?<Error/>:null}
+        <TextField label="Username" inputRef={userNameRef} error={props.displayError}/>
+        <TextField type="password" label="password" inputRef={passwordRef} error={props.displayError}/>
         <Button
           variant="contained"
           onClick={() => userPass()}

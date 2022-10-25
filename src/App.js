@@ -20,18 +20,16 @@ class App extends React.Component {
   }
 
   login = (credentials) => {
-    this.state.users.forEach((user) => {
-      if (
-        user.userName === credentials.user &&
-        user.password === credentials.password
-      ) {
-        this.setState(() => ({ isLoggedIn: true, currentUser: user.userName }));
-      }
+    let user = this.state.users.filter(u => {
+      return  u.userName === credentials.user &&
+      u.password === credentials.password
     });
+    user.length?this.setState(() => ({ isLoggedIn: true, currentUser: user[0].userName })):
+    this.setState(() => ({ displayError: true}))
   };
 
   logout = () => {
-    this.setState(() => ({ isLoggedIn: false }));
+    this.setState(() => ({ isLoggedIn: false, displayError: false }));
   };
 
   render() {
@@ -45,7 +43,9 @@ class App extends React.Component {
           ></Navbar>
         </Box>
 
-        {this.state.isLoggedIn ? <User user={ this.state.currentUser} /> : <LoginPage login={this.login} />}
+        {this.state.isLoggedIn ? <User user={ this.state.currentUser} /> :
+         <LoginPage login={this.login} 
+                     displayError={this.state.displayError}/>}
       </>
     );
   }
